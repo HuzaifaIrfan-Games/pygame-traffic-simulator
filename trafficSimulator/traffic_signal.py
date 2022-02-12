@@ -18,6 +18,9 @@ class TrafficSignal:
         # Calculate properties
         self.init_properties()
 
+    def update_cycle_length(self,cycle_length):
+        self.cycle_length=cycle_length
+        
 
 
     def update_properties(self,config):

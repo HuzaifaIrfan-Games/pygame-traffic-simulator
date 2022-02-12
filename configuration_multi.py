@@ -279,8 +279,8 @@ nodes = [
 
 
 traffic_signals=[
-    {'nodes_names':[[8],[10],[11],[9]],'cycle_length':5},
-    {'nodes_names':[[5],[22],[21]],'cycle_length':5}
+    {'nodes_names':[[8],[10],[11],[9]],'cycle_length':30},
+    {'nodes_names':[[5],[22],[21]],'cycle_length':30}
 ]
 
 

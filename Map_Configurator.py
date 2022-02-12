@@ -33,7 +33,12 @@ class Map_Configurator:
         # self.create_all_starting_node_vehicle_generators()
         self.create_independent_node_vehicle_generators()
 
-        self.sim.create_vehicle_generator_control(self.vehicle_generators)
+        self.sim.create_simulation_control(self.vehicle_generators,self.traffic_signals)
+               
+        # self.sim.create_vehicle_generator_control(self.vehicle_generators) 
+
+        # self.sim.create_traffic_signal_control(self.traffic_signals)
+
 
         # print(self.vehicle_generators)
 

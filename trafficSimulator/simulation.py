@@ -3,8 +3,11 @@ from copy import deepcopy
 from .vehicle_generator import VehicleGenerator
 from .traffic_signal import TrafficSignal
 
+
+from .traffic_signal_control import TrafficSignalControl
 from .vehicle_generator_control import VehicleGeneratorControl
 
+from .simulation_controls import SimulationControl
 
 class Simulation:
     def __init__(self, config={}):
@@ -81,15 +84,24 @@ class Simulation:
         self.t += self.dt
         self.frame_count += 1
 
+        # print(self.tkinter_controls)
+
         for tkinter_control in self.tkinter_controls:
             tkinter_control.update()
 
 
 
-    def create_vehicle_generator_control(self,vehicle_generators):
-        avehicle_generator_control=VehicleGeneratorControl(vehicle_generators)
-        self.tkinter_controls.append(avehicle_generator_control)
+    # def create_vehicle_generator_control(self,vehicle_generators):
+    #     avehicle_generator_control=VehicleGeneratorControl(vehicle_generators)
+    #     self.tkinter_controls.append(avehicle_generator_control)
 
+
+    def create_simulation_control(self,vehicle_generators,traffic_signals):
+        aSimulationControl=SimulationControl(vehicle_generators,traffic_signals)
+        self.tkinter_controls.append(aSimulationControl)
+
+        # self.tkinter_controls.append(VehicleGeneratorControl(vehicle_generators))
+        # self.tkinter_controls.append(TrafficSignalControl(traffic_signals))
 
 
 

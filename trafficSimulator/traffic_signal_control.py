@@ -6,19 +6,20 @@ import tkinter as tk
 from tkinter import *
 
 
-class VehicleGeneratorControl(tk.Toplevel):
+class TrafficSignalControl(tk.Toplevel):
 
-    def __init__(self,parent,vehicle_generators):
+    def __init__(self,parent,traffic_signals):
         super().__init__(parent)
-        self.vehicle_generators=vehicle_generators
+
+        self.traffic_signals=traffic_signals
 
         self.input_vars=[]
 
-        # for avehicle_generators in vehicle_generators:
-        #     print(avehicle_generators.vehicle_rate)
+        # for atraffic_signals in traffic_signals:
+        #     print(atraffic_signals.cycle_length)
 
 
-        self.title("Vehicle Generator Control")
+        self.title("Traffic Signal Control")
         self.geometry('400x400')
         # embed = tk.Frame(self.root, width = 500, height = 500) #creates embed frame for pygame window
         # embed.grid(columnspan = (600), rowspan = 500) # Adds grid
@@ -34,10 +35,11 @@ class VehicleGeneratorControl(tk.Toplevel):
         
         # TextBox Creation
 
-        for i, avehicle_generator in enumerate(self.vehicle_generators):
+        for i, atraffic_signals in enumerate(self.traffic_signals):
+            # print(atraffic_signals)
 
             v = tk.StringVar()
-            v.set(f'{avehicle_generator.vehicle_rate}')
+            v.set(f'{atraffic_signals.cycle_length}')
 
             lbl = tk.Label(frame, text = f"{i}")
             lbl.pack()
@@ -50,21 +52,22 @@ class VehicleGeneratorControl(tk.Toplevel):
             self.input_vars.append(v)
 
 
-        def set_vehicle_rate():
-            for input_var, avehicle_generator in zip(self.input_vars,self.vehicle_generators):
-                vehicle_rate=int(input_var.get())
-                avehicle_generator.update_vehicle_rate(vehicle_rate)
+        def set_cycle_length():
+            for input_var, atraffic_signals in zip(self.input_vars,self.traffic_signals):
+                cycle_length=int(input_var.get())
+                atraffic_signals.update_cycle_length(cycle_length)
                 
         
         # Button Creation
-        set_vehicle_rateButton = tk.Button(frame,
-                                text = "Set Vehicle Rates", 
-                                command = set_vehicle_rate)
-        set_vehicle_rateButton.pack()
+        set_cycle_lengthButton = tk.Button(frame,
+                                text = "Set Cycle Length", 
+                                command = set_cycle_length)
+        set_cycle_lengthButton.pack()
         
 
 
-    #     self.root.update()
+        # self.root.update()
 
     # def update(self):
+
     #     self.root.update()
