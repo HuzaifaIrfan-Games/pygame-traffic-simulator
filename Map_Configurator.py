@@ -7,16 +7,17 @@ from itertools import groupby
 
 
 class Map_Configurator:
-    def __init__(self,nodes, traffic_signals):
+    def __init__(self,nodes_conf, traffic_signals_conf):
 
         self.sim = Simulation()
 
-        self.nodes=nodes
-        self.traffic_signals= traffic_signals
+        self.nodes=nodes_conf
+        self.traffic_signals_conf= traffic_signals_conf
 
         self.roads = []
         self.paths = []
         self.vehicle_generators=[]
+        self.traffic_signals=[]
 
 
         self.road_generator()
@@ -32,6 +33,15 @@ class Map_Configurator:
         # self.create_all_starting_node_vehicle_generators()
         self.create_independent_node_vehicle_generators()
 
+        # print(self.vehicle_generators)
+
+
+
+    def get_node_from_node_name(self, node_name):
+
+        for i, anode in enumerate(self.nodes):
+            if anode['node_name'] == node_name:
+                return anode
 
 
 
@@ -119,23 +129,23 @@ class Map_Configurator:
 
             if not anode['ending_node']:
 
-                for j, next_node_index in enumerate(anode['next']):
-                    next_node = self.nodes[next_node_index]
+                for j, next_node_name in enumerate(anode['next']):
+                    next_node = self.get_node_from_node_name(next_node_name)
 
                     # tail
-                    pos1 = anode['pos']
+                    pos1 = anode['position']
 
                     # head
-                    pos2 = next_node['pos']
+                    pos2 = next_node['position']
 
                     aroad = {
                         'sim_road_index': None,
                         'tail': pos1,
-                        'tail_index': i,
+                        'tail_index': anode['node_name'],
                         'tail_node': anode,
                         'starting_node': anode['starting_node'],
                         'head': pos2,
-                        'head_index': j,
+                        'head_index': next_node['node_name'],
                         'head_node': next_node,
                         'ending_node': next_node['ending_node'],
                         'next':[]
@@ -250,13 +260,13 @@ class Map_Configurator:
 
 
     def create_signal(self):
-        for atraffic_signal in self.traffic_signals:
-            nodes_indexs = atraffic_signal['nodes_indexs']
+        for atraffic_signal_conf in self.traffic_signals_conf:
+            nodes_indexs = atraffic_signal_conf['nodes_indexs']
             roads_indexs=[]
-            for independent_light_node_index in nodes_indexs:
+            for independent_light_node_name in nodes_indexs:
                 independent_light_road_index=[]
-                for light_node_index in independent_light_node_index:
-                    anode = self.nodes[light_node_index]
+                for light_node_name in independent_light_node_name:
+                    anode = self.get_node_from_node_name(light_node_name)
                     
                     for aroad in self.roads:
                         # print(aroad['head_node'])
@@ -268,9 +278,15 @@ class Map_Configurator:
 
                 roads_indexs.append(independent_light_road_index)
 
-            print(roads_indexs)
+            # print(roads_indexs)
+            atraffic_signal=self.sim.create_signal(roads_indexs)
 
-            self.sim.create_signal(roads_indexs)
+            if atraffic_signal_conf.get('cycle_length'):
+
+                atraffic_signal.update_properties({'cycle_length':atraffic_signal_conf['cycle_length']})
+            
+
+            self.traffic_signals.append(atraffic_signal)
 
 
 

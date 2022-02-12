@@ -2,18 +2,26 @@ class TrafficSignal:
     def __init__(self, roads, config={}):
         # Initialize roads
         self.roads = roads
+        self.cycle_length=30
         # Set default configuration
         self.set_default_config()
 
         self.set_individual_signal_cycle()
 
         
-        # Update configuration
-        for attr, val in config.items():
-            setattr(self, attr, val)
+        self.update_properties(config)
+
         # Calculate properties
         self.init_properties()
 
+
+
+    def update_properties(self,config):
+
+        # print(config)
+        # Update configurations
+        for attr, val in config.items():
+            setattr(self, attr, val)
 
     def set_individual_signal_cycle(self):
 
@@ -55,6 +63,6 @@ class TrafficSignal:
         return self.cycle[self.current_cycle_index]
     
     def update(self, sim):
-        cycle_length = 30
-        k = (sim.t // cycle_length) % len(self.roads)
+        # self.cycle_length = 30
+        k = (sim.t // self.cycle_length) % len(self.roads)
         self.current_cycle_index = int(k)

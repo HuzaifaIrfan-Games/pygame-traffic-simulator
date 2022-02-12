@@ -14,8 +14,8 @@ nodes = [
     # starting Nodes always tail and have one nexts
 
     {
-        'index': 0,
-        'pos': (-a,
+        'node_name': 0,
+        'position': (-a,
                 +b+l),
         'ending_node': False,
         'starting_node': True,
@@ -23,8 +23,8 @@ nodes = [
         'next': [8]
     },
     {
-        'index': 1,
-        'pos': (+b+l,
+        'node_name': 1,
+        'position': (+b+l,
                 +a),
         'ending_node': False,
         'starting_node': True,
@@ -32,8 +32,8 @@ nodes = [
         'next': [9]
     },
     {
-        'index': 2,
-        'pos': (-b-l,
+        'node_name': 2,
+        'position': (-b-l,
                 -a),
         'ending_node': False,
         'starting_node': True,
@@ -41,8 +41,8 @@ nodes = [
         'next': [10]
     },
     {
-        'index': 3,
-        'pos': (+a,
+        'node_name': 3,
+        'position': (+a,
                 -b-l),
         'ending_node': False,
         'starting_node': True,
@@ -54,32 +54,32 @@ nodes = [
 
     # Ending Nodes always head and have no nexts
     {
-        'index': 4,
-        'pos': (+a,
+        'node_name': 4,
+        'position': (+a,
                 +b+l),
         'ending_node': True,
         'starting_node': False,
         'next': []
     },
     {
-        'index': 5,
-        'pos': (+b+l,
+        'node_name': 5,
+        'position': (+b+l,
                 -a),
         'ending_node': True,
         'starting_node': False,
         'next': []
     },
     {
-        'index': 6,
-        'pos': (-b-l,
+        'node_name': 6,
+        'position': (-b-l,
                 +a),
         'ending_node': True,
         'starting_node': False,
         'next': []
     },
     {
-        'index': 7,
-        'pos': (-a,
+        'node_name': 7,
+        'position': (-a,
                 -b-l),
         'ending_node': True,
         'starting_node': False,
@@ -91,16 +91,16 @@ nodes = [
     # starting head multiple nexts
 
     {
-        'index': 8,
-        'pos': (-a,
+        'node_name': 8,
+        'position': (-a,
                 +b),
         'ending_node': False,
         'starting_node': False,
         'next': [13, 14, 15]
     },
     {
-        'index': 9,
-        'pos': (+b,
+        'node_name': 9,
+        'position': (+b,
                 +a),
         'ending_node': False,
         'starting_node': False,
@@ -108,16 +108,16 @@ nodes = [
     },
 
     {
-        'index': 10,
-        'pos': (-b,
+        'node_name': 10,
+        'position': (-b,
                 -a),
         'ending_node': False,
         'starting_node': False,
         'next': [12, 13, 15]
     },
     {
-        'index': 11,
-        'pos': (+a,
+        'node_name': 11,
+        'position': (+a,
                 -b),
         'ending_node': False,
         'starting_node': False,
@@ -129,16 +129,16 @@ nodes = [
     # ending tail only one nexts
 
     {
-        'index': 12,
-        'pos': (+a,
+        'node_name': 12,
+        'position': (+a,
                 +b),
         'ending_node': False,
         'starting_node': False,
         'next': [4]
     },
     {
-        'index': 13,
-        'pos': (+b,
+        'node_name': 13,
+        'position': (+b,
                 -a),
         'ending_node': False,
         'starting_node': False,
@@ -146,29 +146,25 @@ nodes = [
     },
 
     {
-        'index': 14,
-        'pos': (-b,
+        'node_name': 14,
+        'position': (-b,
                 +a),
         'ending_node': False,
         'starting_node': False,
         'next': [6]
     },
     {
-        'index': 15,
-        'pos': (-a, -b),
+        'node_name': 15,
+        'position': (-a, -b),
         'ending_node': False,
         'starting_node': False,
         'next': [7]
     },
 
 
-
-
 ]
 
 
-
-
 traffic_signals=[
-    {'nodes_indexs':[[8],[9],[10],[11]]}
+    {'nodes_indexs':[[8],[10],[11],[9]]}
 ]
