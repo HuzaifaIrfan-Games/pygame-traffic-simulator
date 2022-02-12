@@ -33,6 +33,8 @@ class Map_Configurator:
         # self.create_all_starting_node_vehicle_generators()
         self.create_independent_node_vehicle_generators()
 
+        self.sim.create_vehicle_generator_control(self.vehicle_generators)
+
         # print(self.vehicle_generators)
 
 
@@ -273,7 +275,7 @@ class Map_Configurator:
             for independent_light_node_name in nodes_names:
                 independent_light_road_index=[]
                 for light_node_name in independent_light_node_name:
-                    
+
                     anode = self.get_node_from_node_name(light_node_name)
                     aroad=self.get_road_from_node(anode)
                     independent_light_road_index.append(aroad['sim_road_index'])
@@ -292,7 +294,7 @@ class Map_Configurator:
 
             # atraffic_signal.current_cycle_index = 1
 
-            print(atraffic_signal.current_cycle)
+            # print(atraffic_signal.current_cycle)
 
             self.traffic_signals.append(atraffic_signal)
 

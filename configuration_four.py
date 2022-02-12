@@ -170,4 +170,4 @@ traffic_signals=[
 ]
 
 zoom=10
-steps_per_update=30
+steps_per_update=10

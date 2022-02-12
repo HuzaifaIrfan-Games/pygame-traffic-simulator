@@ -3,10 +3,14 @@ from copy import deepcopy
 from .vehicle_generator import VehicleGenerator
 from .traffic_signal import TrafficSignal
 
+from .vehicle_generator_control import VehicleGeneratorControl
+
+
 class Simulation:
     def __init__(self, config={}):
         # Set default configuration
         self.set_default_config()
+        self.tkinter_controls=[]
 
         # Update configuration
         for attr, val in config.items():
@@ -72,10 +76,21 @@ class Simulation:
                     next_road_index = vehicle.path[vehicle.current_road_index]
                     self.roads[next_road_index].vehicles.append(new_vehicle)
                 # In all cases, remove it from its road
-                road.vehicles.popleft() 
+                road.vehicles.popleft()
         # Increment time
         self.t += self.dt
         self.frame_count += 1
+
+        for tkinter_control in self.tkinter_controls:
+            tkinter_control.update()
+
+
+
+    def create_vehicle_generator_control(self,vehicle_generators):
+        avehicle_generator_control=VehicleGeneratorControl(vehicle_generators)
+        self.tkinter_controls.append(avehicle_generator_control)
+
+
 
 
     def run(self, steps):
