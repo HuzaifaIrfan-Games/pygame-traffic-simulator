@@ -169,5 +169,5 @@ traffic_signals=[
     {'nodes_names':[[8],[10],[11],[9]],'manual':False}
 ]
 
-zoom=10
+zoom=4
 steps_per_update=10

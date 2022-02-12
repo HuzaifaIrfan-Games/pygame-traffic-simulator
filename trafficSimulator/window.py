@@ -2,6 +2,8 @@ import pygame
 from pygame import gfxdraw
 import numpy as np
 
+import cv2
+import PIL
 class Window:
     def __init__(self, sim, config={}):
         # Simulation to draw
@@ -20,7 +22,7 @@ class Window:
         self.height = 900
         self.bg_color = (250, 250, 250)
 
-        self.fps = 60
+        self.fps = 30
         self.zoom = 5
         self.offset = (0, 0)
 
@@ -38,7 +40,7 @@ class Window:
         pygame.display.flip()
 
         # Fixed fps
-        clock = pygame.time.Clock()
+        self.clock = pygame.time.Clock()
 
         # To draw text
         pygame.font.init()
@@ -55,7 +57,7 @@ class Window:
 
             # Update window
             pygame.display.update()
-            clock.tick(self.fps)
+            self.clock.tick(self.fps)
 
             # Handle all events
             for event in pygame.event.get():
@@ -283,6 +285,8 @@ class Window:
 
         self.rotated_box((x, y), (l, h), cos=cos, sin=sin, centered=True)
 
+        
+
     def draw_vehicles(self):
         for road in self.sim.roads:
             # Draw vehicles
@@ -306,11 +310,15 @@ class Window:
                         color=color)
 
     def draw_status(self):
-        text_fps = self.text_font.render(f't={self.sim.t:.5}', False, (0, 0, 0))
-        text_frc = self.text_font.render(f'n={self.sim.frame_count}', False, (0, 0, 0))
-        
+
+        text_fps = self.text_font.render(f'fps={self.clock.get_fps():.5}', False, (0, 0, 0))
         self.screen.blit(text_fps, (0, 0))
-        self.screen.blit(text_frc, (100, 0))
+
+        text_time = self.text_font.render(f't={self.sim.t:.5}', False, (0, 0, 0))
+        self.screen.blit(text_time, (150, 0))
+        
+        text_frc = self.text_font.render(f'n={self.sim.frame_count}', False, (0, 0, 0))
+        self.screen.blit(text_frc, (250, 0))
 
 
     def draw(self):
@@ -328,4 +336,64 @@ class Window:
 
         # Draw status info
         self.draw_status()
+
+        p1=(-20,-20)
+        p2=(20,20)
+
+        self.show_subsurface(p1,p2)
+
+    def show_subsurface(self,p1,p2):
+
+        test_surface=self.get_subsurface(p1,p2)
+
+        self.simulation_capture_cv(test_surface)
+
+
+    
+    def get_subsurface(self,p1,p2):
+
+
+
+
+        start=self.inverse_convert(p1)
+        end=self.inverse_convert(p2)
+
+        distance=(end[0]-start[0],end[1]-start[1])
+
+        # print(start)
+        # print(end)
+        # print(distance)
+
+
+        copy_surface = pygame.Surface.copy(self.screen)
+        test_surface=pygame.Surface.subsurface(copy_surface,(*start,*distance))
+
+        return test_surface
+
         
+
+
+
+        # pygame.image.save(self.screen, "screenshot.jpeg")
+
+    
+    def convert_to_PIL(self,surface):
+                #  create a copy of the surface
+        view = pygame.surfarray.array3d(surface)
+
+        #  convert from (width, height, channel) to (height, width, channel)
+        view = view.transpose([1, 0, 2])
+
+        #  convert from rgb to bgr
+        img_bgr = cv2.cvtColor(view, cv2.COLOR_RGB2BGR)
+
+        return img_bgr
+
+
+    def simulation_capture_cv(self,surface):
+
+        img_bgr=self.convert_to_PIL(surface)
+
+        cv2.imshow('Simulation Capture',img_bgr)
+
+        cv2.waitKey(1)

@@ -4,6 +4,7 @@ from .vehicle_generator import VehicleGenerator
 from .traffic_signal import TrafficSignal
 
 
+
 from .traffic_signal_control import TrafficSignalControl
 from .vehicle_generator_control import VehicleGeneratorControl
 
@@ -106,5 +107,10 @@ class Simulation:
 
 
     def run(self, steps):
+
+        
         for _ in range(steps):
             self.update()
+
+
+

@@ -142,7 +142,6 @@ sim.create_signal([[0],[1],[2],[3]])
 
 # sim.create_signal([[0, 2], [1, 3]])
 
-
 # Start simulation
 win = Window(sim)
 win.zoom = 10
