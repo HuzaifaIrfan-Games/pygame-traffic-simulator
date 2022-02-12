@@ -337,10 +337,10 @@ class Window:
         # Draw status info
         self.draw_status()
 
-        p1=(-20,-20)
-        p2=(20,20)
+        # p1=(-20,-20)
+        # p2=(20,20)
 
-        self.show_subsurface(p1,p2)
+        # self.show_subsurface(p1,p2)
 
     def show_subsurface(self,p1,p2):
 
