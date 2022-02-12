@@ -279,6 +279,10 @@ nodes = [
 
 
 traffic_signals=[
-    {'nodes_indexs':[[8],[10],[11],[9]],'cycle_length':5},
-    {'nodes_indexs':[[5],[22],[21]],'cycle_length':5}
+    {'nodes_names':[[8],[10],[11],[9]],'cycle_length':5},
+    {'nodes_names':[[5],[22],[21]],'cycle_length':5}
 ]
+
+
+zoom=10
+steps_per_update=30

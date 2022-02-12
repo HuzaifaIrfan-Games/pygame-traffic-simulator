@@ -261,9 +261,9 @@ class Map_Configurator:
 
     def create_signal(self):
         for atraffic_signal_conf in self.traffic_signals_conf:
-            nodes_indexs = atraffic_signal_conf['nodes_indexs']
+            nodes_names = atraffic_signal_conf['nodes_names']
             roads_indexs=[]
-            for independent_light_node_name in nodes_indexs:
+            for independent_light_node_name in nodes_names:
                 independent_light_road_index=[]
                 for light_node_name in independent_light_node_name:
                     anode = self.get_node_from_node_name(light_node_name)
@@ -294,9 +294,9 @@ class Map_Configurator:
 
 
 
-    def run(self):
+    def run(self,zoom,steps_per_update):
         # Start simulation
         win = Window(self.sim)
-        win.zoom = 10
-        win.run(steps_per_update=10)
+        win.zoom = zoom
+        win.run(steps_per_update=steps_per_update)
 
