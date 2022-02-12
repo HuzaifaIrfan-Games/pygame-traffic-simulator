@@ -29,6 +29,11 @@ class VehicleGenerator:
             setattr(self, attr, val)
 
 
+    def update_vehicle_rate(self,vehicle_rate):
+        self.vehicle_rate=vehicle_rate
+        
+
+
     def generate_vehicle(self):
         """Returns a random vehicle from self.vehicles with random proportions"""
         total = sum(pair[0] for pair in self.vehicles)

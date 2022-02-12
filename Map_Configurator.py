@@ -255,8 +255,15 @@ class Map_Configurator:
 
 
 
+    def get_road_from_node(self,anode):
 
-    
+        for aroad in self.roads:
+            # print(aroad['head_node'])
+            # print(anode)
+            if aroad['head_node'] == anode:
+                return aroad
+                
+
 
 
     def create_signal(self):
@@ -266,15 +273,10 @@ class Map_Configurator:
             for independent_light_node_name in nodes_names:
                 independent_light_road_index=[]
                 for light_node_name in independent_light_node_name:
-                    anode = self.get_node_from_node_name(light_node_name)
                     
-                    for aroad in self.roads:
-                        # print(aroad['head_node'])
-                        # print(anode)
-                        if aroad['head_node'] == anode:
-                            independent_light_road_index.append(aroad['sim_road_index'])
-                            break
-
+                    anode = self.get_node_from_node_name(light_node_name)
+                    aroad=self.get_road_from_node(anode)
+                    independent_light_road_index.append(aroad['sim_road_index'])
 
                 roads_indexs.append(independent_light_road_index)
 
@@ -285,6 +287,12 @@ class Map_Configurator:
 
                 atraffic_signal.update_properties({'cycle_length':atraffic_signal_conf['cycle_length']})
             
+            if atraffic_signal_conf.get('manual'):
+                atraffic_signal.set_to_manual()
+
+            # atraffic_signal.current_cycle_index = 1
+
+            print(atraffic_signal.current_cycle)
 
             self.traffic_signals.append(atraffic_signal)
 

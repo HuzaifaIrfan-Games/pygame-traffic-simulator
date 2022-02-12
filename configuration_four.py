@@ -166,7 +166,7 @@ nodes = [
 
 
 traffic_signals=[
-    {'nodes_names':[[8],[10],[11],[9]]}
+    {'nodes_names':[[8],[10],[11],[9]],'manual':False}
 ]
 
 zoom=10
