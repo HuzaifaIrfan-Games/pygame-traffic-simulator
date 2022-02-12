@@ -23,7 +23,8 @@ class Simulation:
     def create_road(self, start, end):
         road = Road(start, end)
         self.roads.append(road)
-        return road
+        # return road
+        return len(self.roads)-1
 
     def create_roads(self, road_list):
         for road in road_list:

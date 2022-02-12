@@ -8,10 +8,7 @@ class VehicleGenerator:
         # Set default configurations
         self.set_default_config()
 
-        # Update configurations
-        for attr, val in config.items():
-            setattr(self, attr, val)
-
+        self.update_properties(config)
         # Calculate properties
         self.init_properties()
 
@@ -25,6 +22,12 @@ class VehicleGenerator:
 
     def init_properties(self):
         self.upcoming_vehicle = self.generate_vehicle()
+
+    def update_properties(self,config):
+        # Update configurations
+        for attr, val in config.items():
+            setattr(self, attr, val)
+
 
     def generate_vehicle(self):
         """Returns a random vehicle from self.vehicles with random proportions"""
