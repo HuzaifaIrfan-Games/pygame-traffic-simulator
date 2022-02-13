@@ -6,7 +6,7 @@ sim = Simulation()
 # Play with these
 
 # resolution of curve roads
-n = 1
+n = 15
 # distance from center and each other
 a = 2
 # radius of curve and addition to length
