@@ -19,7 +19,10 @@ class VehicleGeneratorControl(tk.Toplevel):
 
 
         self.title("Vehicle Generator Control")
-        self.geometry('400x400')
+        self.geometry('400x500')
+
+
+
         # embed = tk.Frame(self.root, width = 500, height = 500) #creates embed frame for pygame window
         # embed.grid(columnspan = (600), rowspan = 500) # Adds grid
         # embed.pack(side = LEFT) #packs window to the left

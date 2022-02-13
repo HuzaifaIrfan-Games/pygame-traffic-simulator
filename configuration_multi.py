@@ -286,3 +286,11 @@ traffic_signals=[
 
 zoom=10
 steps_per_update=10
+
+if __name__ == '__main__':
+
+    from Map_Configurator import Map_Configurator
+
+    configurator = Map_Configurator(nodes,traffic_signals)
+
+    configurator.run(zoom,steps_per_update)

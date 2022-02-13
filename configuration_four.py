@@ -14,47 +14,47 @@ nodes = [
     # starting Nodes always tail and have one nexts
 
     {
-        'node_name': 0,
+        'node_name': 'south_start_tail_1',
         'position': (-a,
                 +b+l),
         'ending_node': False,
         'starting_node': True,
         'vehicle_rate':15,
-        'next': [8]
+        'next': ['south_j1_head_1']
     },
     {
-        'node_name': 1,
+        'node_name': 'east_start_tail_1',
         'position': (+b+l,
                 +a),
         'ending_node': False,
         'starting_node': True,
         'vehicle_rate':6,
-        'next': [9]
+        'next': ['east_j1_head_1']
     },
     {
-        'node_name': 2,
+        'node_name': 'west_start_tail_1',
         'position': (-b-l,
                 -a),
         'ending_node': False,
         'starting_node': True,
         'vehicle_rate':10,
-        'next': [10]
+        'next': ['west_j1_head_1']
     },
     {
-        'node_name': 3,
+        'node_name': 'north_start_tail_1',
         'position': (+a,
                 -b-l),
         'ending_node': False,
         'starting_node': True,
         'vehicle_rate':8,
-        'next': [11]
+        'next': ['north_j1_head_1']
     },
 
 
 
     # Ending Nodes always head and have no nexts
     {
-        'node_name': 4,
+        'node_name': 'south_start_head_1',
         'position': (+a,
                 +b+l),
         'ending_node': True,
@@ -62,7 +62,7 @@ nodes = [
         'next': []
     },
     {
-        'node_name': 5,
+        'node_name': 'east_start_head_1',
         'position': (+b+l,
                 -a),
         'ending_node': True,
@@ -70,7 +70,7 @@ nodes = [
         'next': []
     },
     {
-        'node_name': 6,
+        'node_name': 'west_start_head_1',
         'position': (-b-l,
                 +a),
         'ending_node': True,
@@ -78,7 +78,7 @@ nodes = [
         'next': []
     },
     {
-        'node_name': 7,
+        'node_name': 'north_start_head_1',
         'position': (-a,
                 -b-l),
         'ending_node': True,
@@ -91,37 +91,37 @@ nodes = [
     # starting head multiple nexts
 
     {
-        'node_name': 8,
+        'node_name': 'south_j1_head_1',
         'position': (-a,
                 +b),
         'ending_node': False,
         'starting_node': False,
-        'next': [13, 14, 15]
+        'next': ['east_j1_tail_1','west_j1_tail_1','north_j1_tail_1']
     },
     {
-        'node_name': 9,
+        'node_name': 'east_j1_head_1',
         'position': (+b,
                 +a),
         'ending_node': False,
         'starting_node': False,
-        'next': [12, 14, 15]
+        'next': ['south_j1_tail_1','west_j1_tail_1','north_j1_tail_1']
     },
 
     {
-        'node_name': 10,
+        'node_name': 'west_j1_head_1',
         'position': (-b,
                 -a),
         'ending_node': False,
         'starting_node': False,
-        'next': [12, 13, 15]
+        'next': ['south_j1_tail_1','east_j1_tail_1','north_j1_tail_1']
     },
     {
-        'node_name': 11,
+        'node_name': 'north_j1_head_1',
         'position': (+a,
                 -b),
         'ending_node': False,
         'starting_node': False,
-        'next': [12, 13, 14]
+        'next': ['south_j1_tail_1','east_j1_tail_1','west_j1_tail_1']
     },
 
 
@@ -129,36 +129,36 @@ nodes = [
     # ending tail only one nexts
 
     {
-        'node_name': 12,
+        'node_name': 'south_j1_tail_1',
         'position': (+a,
                 +b),
         'ending_node': False,
         'starting_node': False,
-        'next': [4]
+        'next': ['south_start_head_1']
     },
     {
-        'node_name': 13,
+        'node_name': 'east_j1_tail_1',
         'position': (+b,
                 -a),
         'ending_node': False,
         'starting_node': False,
-        'next': [5]
+        'next': ['east_start_head_1']
     },
 
     {
-        'node_name': 14,
+        'node_name': 'west_j1_tail_1',
         'position': (-b,
                 +a),
         'ending_node': False,
         'starting_node': False,
-        'next': [6]
+        'next': ['west_start_head_1']
     },
     {
-        'node_name': 15,
+        'node_name': 'north_j1_tail_1',
         'position': (-a, -b),
         'ending_node': False,
         'starting_node': False,
-        'next': [7]
+        'next': ['north_start_head_1']
     },
 
 
@@ -166,8 +166,18 @@ nodes = [
 
 
 traffic_signals=[
-    {'nodes_names':[[8],[10],[11],[9]],'manual':False}
+    {'nodes_names':[['south_j1_head_1'],['west_j1_head_1'],['north_j1_head_1'],['east_j1_head_1']],'manual':False}
 ]
 
 zoom=4
 steps_per_update=10
+
+
+
+if __name__ == '__main__':
+
+    from Map_Configurator import Map_Configurator
+
+    configurator = Map_Configurator(nodes,traffic_signals)
+
+    configurator.run(zoom,steps_per_update)

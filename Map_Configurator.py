@@ -50,6 +50,8 @@ class Map_Configurator:
             if anode['node_name'] == node_name:
                 return anode
 
+        return False
+
 
 
 
@@ -139,27 +141,32 @@ class Map_Configurator:
                 for j, next_node_name in enumerate(anode['next']):
                     next_node = self.get_node_from_node_name(next_node_name)
 
-                    # tail
-                    pos1 = anode['position']
+                    if next_node:
 
-                    # head
-                    pos2 = next_node['position']
+                        # tail
+                        pos1 = anode['position']
 
-                    aroad = {
-                        'sim_road_index': None,
-                        'tail': pos1,
-                        'tail_index': anode['node_name'],
-                        'tail_node': anode,
-                        'starting_node': anode['starting_node'],
-                        'head': pos2,
-                        'head_index': next_node['node_name'],
-                        'head_node': next_node,
-                        'ending_node': next_node['ending_node'],
-                        'next':[]
-                    }
-                    # print(anode['starting_node'])
+                        # head
+                        pos2 = next_node['position']
 
-                    self.roads.append(aroad)
+                        aroad = {
+                            'sim_road_index': None,
+                            'tail': pos1,
+                            'tail_index': anode['node_name'],
+                            'tail_node': anode,
+                            'starting_node': anode['starting_node'],
+                            'head': pos2,
+                            'head_index': next_node['node_name'],
+                            'head_node': next_node,
+                            'ending_node': next_node['ending_node'],
+                            'next':[]
+                        }
+                        # print(anode['starting_node'])
+
+                        self.roads.append(aroad)
+
+                    else:
+                        print(f'no next node for road: {next_node_name}')
 
 
 
@@ -282,8 +289,11 @@ class Map_Configurator:
                 for light_node_name in independent_light_node_name:
 
                     anode = self.get_node_from_node_name(light_node_name)
-                    aroad=self.get_road_from_node(anode)
-                    independent_light_road_index.append(aroad['sim_road_index'])
+                    if anode:
+                        aroad=self.get_road_from_node(anode)
+                        independent_light_road_index.append(aroad['sim_road_index'])
+                    else:
+                        print(f'no light node: {light_node_name}')
 
                 roads_indexs.append(independent_light_road_index)
 

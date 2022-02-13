@@ -98,7 +98,7 @@ class TrafficSignalControl(tk.Toplevel):
             set_to_autoButton = tk.Button(f1,
                                 text = "Set To Auto", 
                                 command = partial(set_to_auto, i))
-            print(i)
+            # print(i)
             set_to_autoButton.pack(side = LEFT)
 
             f1.pack()
