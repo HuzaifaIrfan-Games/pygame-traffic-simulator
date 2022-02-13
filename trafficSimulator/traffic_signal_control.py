@@ -4,6 +4,9 @@
 
 import tkinter as tk
 from tkinter import *
+from turtle import position
+
+from functools import partial
 
 
 class TrafficSignalControl(tk.Toplevel):
@@ -63,7 +66,42 @@ class TrafficSignalControl(tk.Toplevel):
                                 text = "Set Cycle Length", 
                                 command = set_cycle_length)
         set_cycle_lengthButton.pack()
-        
+
+        def set_all_off(i=0):
+            self.traffic_signals[i].set_cycle_index(0)
+
+        def set_all_on(i=0):
+            self.traffic_signals[i].set_cycle_index(1)
+
+        def set_to_auto(i=0):
+            self.traffic_signals[i].set_to_auto()
+    
+
+        for i, atraffic_signals in enumerate(self.traffic_signals):
+
+            lbl = tk.Label(frame, text = f"{i}")
+            lbl.pack()   
+
+            f1 = tk.Frame(frame)          
+
+            set_all_offButton = tk.Button(f1,
+                                text = "Set All Off", 
+                                command = partial(set_all_off, i))
+            set_all_offButton.pack(side = LEFT)
+
+            set_all_onButton = tk.Button(f1,
+                                text = "Set All On", 
+                                command = partial(set_all_on, i))
+            set_all_onButton.pack(side = LEFT)
+
+
+            set_to_autoButton = tk.Button(f1,
+                                text = "Set To Auto", 
+                                command = partial(set_to_auto, i))
+            print(i)
+            set_to_autoButton.pack(side = LEFT)
+
+            f1.pack()
 
 
         # self.root.update()

@@ -21,7 +21,11 @@ class TrafficSignal:
     def update_cycle_length(self,cycle_length):
         self.cycle_length=cycle_length
         
+    def set_cycle_index(self,cycle_index):
+        self.set_to_manual()
+        self.current_cycle_index=cycle_index
 
+        
 
     def update_properties(self,config):
 
@@ -31,15 +35,21 @@ class TrafficSignal:
             setattr(self, attr, val)
 
     def set_to_manual(self):
-        individual_signals=len(self.roads)
-        signal_state = tuple(False for i in range(individual_signals))
-        self.cycle.insert(0, signal_state)
         self.auto = False
+
+    def set_to_auto(self):
+        self.auto = True
 
     def set_individual_signal_cycle(self):
 
 
         individual_signals=len(self.roads)
+
+        signal_state = tuple(False for i in range(individual_signals))
+        self.cycle.append(signal_state)
+
+        signal_state = tuple(True for i in range(individual_signals))
+        self.cycle.append(signal_state)
 
         for n in range(individual_signals):
 
@@ -76,4 +86,4 @@ class TrafficSignal:
         # self.cycle_length = 30
         if self.auto:
             k = (sim.t // self.cycle_length) % len(self.roads)
-            self.current_cycle_index = int(k)
+            self.current_cycle_index = int(k)+2

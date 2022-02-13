@@ -32,6 +32,9 @@ class SimulationControl(tk.Tk):
         def open_traffic_signal_control():
             window = TrafficSignalControl(self,traffic_signals)
             # window.grab_set()
+
+        def close_simulatiom_control():
+            self.destroy()
         
         ttk.Button(self,
         text='Open a Vehicle Generator Control',
@@ -40,6 +43,10 @@ class SimulationControl(tk.Tk):
         ttk.Button(self,
         text='Open a Traffic Signal Control',
         command=open_traffic_signal_control).pack(expand=True)
+
+        ttk.Button(self,
+        text='Exit',
+        command=close_simulatiom_control).pack(expand=True)
 
 
         # self.update()
