@@ -1,4 +1,4 @@
-# Traffic-Light-Simulation
+# Pygame Traffic Simulator
 
 
 ### Create nodes in conf file in the following pattern as in examples files
