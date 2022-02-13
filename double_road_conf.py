@@ -322,7 +322,7 @@ steps_per_update=10
 
 if __name__ == '__main__':
 
-    from Map_Configurator import Map_Configurator
+    from trafficSimulator import Map_Configurator
 
     configurator = Map_Configurator(nodes,traffic_signals)
 

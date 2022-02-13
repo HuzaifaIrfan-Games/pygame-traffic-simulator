@@ -1,9 +1,16 @@
 import enum
 import numpy as np
-from trafficSimulator import *
+# from trafficSimulator import *
 from itertools import groupby
  
 
+from .curve import *
+from .vehicle import *
+from .road import *
+from .simulation import *
+from .window import *
+from .vehicle_generator import *
+from .traffic_signal import *
 
 
 class Map_Configurator:
