@@ -1,6 +1,5 @@
 # Pygame Traffic Simulator
 
-
 ### Create nodes in conf file in the following pattern as in examples files
 Use you own descriptive node names and positions of nodes and connect them with next list of each node.
 
@@ -42,3 +41,6 @@ traffic_signals=[
 ```
 
 Traffic Signal Settings can be controlled from simulation control.
+
+
+#### Forked from https://github.com/BilHim/trafficSimulator
