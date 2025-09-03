@@ -43,4 +43,17 @@ traffic_signals=[
 Traffic Signal Settings can be controlled from simulation control.
 
 
-#### Forked from https://github.com/BilHim/trafficSimulator
+# 📝 Documentation
+
+# 📚 References
+- Forked from https://github.com/BilHim/trafficSimulator
+
+
+# 🤝🏻 Connect with Me
+
+[![GitHub](https://img.shields.io/badge/Github-%23222.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/HuzaifaIrfan/)
+[![Website](https://img.shields.io/badge/Website-%23222.svg?style=for-the-badge&logo=google-chrome&logoColor==%234285F4)](https://www.huzaifairfan.com)
+
+# 📜 License
+
+Licensed under the GPL3 License, Copyright 2025 Huzaifa Irfan. [LICENSE](LICENSE)
