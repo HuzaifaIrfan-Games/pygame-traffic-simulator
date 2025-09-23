@@ -1,5 +1,25 @@
 # Pygame Traffic Simulator
 
+<!-- •[Link](#)
+
+<hr>
+
+![overview](overview.drawio.png)
+
+-->
+
+## 🎬 Demo
+
+[▶️![Demo](https://img.youtube.com/vi/y-DzLQIqBr4/maxresdefault.jpg)](https://www.youtube.com/watch?v=y-DzLQIqBr4)
+
+
+
+## Nov 28, 2021 Fork from https://github.com/BilHim/trafficSimulator
+
+# 🚀 Usage
+
+### Map Configuration Class
+
 ### Create nodes in conf file in the following pattern as in examples files
 Use you own descriptive node names and positions of nodes and connect them with next list of each node.
 
@@ -46,7 +66,7 @@ Traffic Signal Settings can be controlled from simulation control.
 # 📝 Documentation
 
 # 📚 References
-- Forked from https://github.com/BilHim/trafficSimulator
+
 
 
 # 🤝🏻 Connect with Me
